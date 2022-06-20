@@ -32,18 +32,31 @@ struct ContentView: View {
                     }
                     
                     Section {
-                        Picker("People", selection: $activePerson.name) {
+                        Picker("People", selection: $activePerson) {
                             ForEach(people.sorted(by: { p1, p2 in
                                 p1.name < p2.name
                             }), id: \.self) {
+                                
                                 if ($0.averageDelayMinutes > 0) {
-                                    Text("\($0.name) is usually delayed \($0.averageDelayMinutes) minutes")
+                                    Text("\($0.name) delayed \($0.averageDelayMinutes) minutes")
                                 } else {
-                                    Text("\($0.name) is usually early \(-$0.averageDelayMinutes) minutes")
+                                    Text("\($0.name) early \(-$0.averageDelayMinutes) minutes")
                                 }
                                 
                             }
                         }
+                    }
+                    
+                    Section {
+                        Text(activePerson.name)
+                    }header: {
+                        Text("Person name")
+                    }
+                    
+                    Section {
+                        Text(String(activePerson.averageDelayMinutes))
+                    }header: {
+                        Text("Person delay/early")
                     }
                 }
                 
@@ -91,7 +104,7 @@ struct AddPersonView: View {
         Button("Add") {
             let newPerson = Person(name: newPersonName, averageDelayMinutes: Int(activePerson.averageDelayMinutes-100))
             people.append(newPerson)
-            stateManager.changeLogin(state: false)
+            stateManager.changeAddPersonStatus(state: false)
             newPersonName = ""
             activePerson.averageDelayMinutes = 100
             newPersonDelay = ""
@@ -108,10 +121,18 @@ struct AddPersonView: View {
 
 class StateManager : ObservableObject {
     @Published var isShowingAddPerson = false
+    @Published var isShowingActivePerson = false
+
     
-    func changeLogin(state: Bool) {
+    func changeAddPersonStatus(state: Bool) {
         withAnimation {
             isShowingAddPerson = state
+        }
+    }
+    
+    func changeActivePersonStatus(state: Bool) {
+        withAnimation {
+            isShowingActivePerson = state
         }
     }
 }
