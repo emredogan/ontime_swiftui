@@ -14,8 +14,6 @@ struct ContentView: View {
     @State var newPersonName = ""
     @State var newPersonDelay = ""
     @State private var selectedCountry: String = ""
-
-    
     
     var body: some View {
         
@@ -45,20 +43,30 @@ struct ContentView: View {
                                 }
                                 
                             }
+                        }.onChange(of: activePerson) { tag in
+                            withAnimation {
+                                if(!stateManager.isShowingActivePerson) {
+                                    stateManager.isShowingActivePerson.toggle()
+                                }
+                            }
                         }
                     }
                     
-                    Section {
-                        Text(activePerson.name)
-                    }header: {
-                        Text("Person name")
+                    if stateManager.isShowingActivePerson {
+                        Section {
+                            Text(activePerson.name)
+                        }header: {
+                            Text("Person name")
+                        }
+                        
+                        Section {
+                            Text(String(activePerson.averageDelayMinutes))
+                        }header: {
+                            Text("Person delay/early")
+                        }
                     }
                     
-                    Section {
-                        Text(String(activePerson.averageDelayMinutes))
-                    }header: {
-                        Text("Person delay/early")
-                    }
+                    
                 }
                 
             }
@@ -111,6 +119,8 @@ struct AddPersonView: View {
     @Binding var selectedCountry: String
 
     @ObservedObject var stateManager : StateManager
+    
+    
 
 
     var body: some View {
@@ -141,11 +151,10 @@ struct AddPersonView: View {
         }
         
         Button("Add") {
-            let newPerson = Person(name: "\(newPersonName + Flags.flag(country: selectedCountry))", nationality: selectedCountry, averageDelayMinutes: Int(activePerson.averageDelayMinutes-100))
+            let newPerson = Person(name: "\(newPersonName + Flags.flag(country: selectedCountry))", nationality: selectedCountry, averageDelayMinutes: (Int(newPersonDelay) ?? 100)-100)
             people.append(newPerson)
             stateManager.changeAddPersonStatus(state: false)
             newPersonName = ""
-            activePerson.averageDelayMinutes = 100
             newPersonDelay = ""
             
         }   .frame(minWidth: 0, maxWidth: .infinity)
