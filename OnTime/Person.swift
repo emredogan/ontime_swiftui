@@ -9,5 +9,6 @@ import Foundation
 
 struct Person: Hashable {
     var name: String
+    var nationality: String
     var averageDelayMinutes: Int
 }

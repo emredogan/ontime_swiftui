@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6336EA802862236A00BF5F6F /* Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336EA7F2862236A00BF5F6F /* Flags.swift */; };
 		6338C2D0285F358F0087C1F4 /* OnTimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338C2CF285F358F0087C1F4 /* OnTimeApp.swift */; };
 		6338C2D2285F358F0087C1F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338C2D1285F358F0087C1F4 /* ContentView.swift */; };
 		6338C2D4285F35950087C1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6338C2D3285F35950087C1F4 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6336EA7F2862236A00BF5F6F /* Flags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flags.swift; sourceTree = "<group>"; };
 		6338C2CC285F358F0087C1F4 /* OnTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6338C2CF285F358F0087C1F4 /* OnTimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTimeApp.swift; sourceTree = "<group>"; };
 		6338C2D1285F358F0087C1F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,7 +47,6 @@
 				C206A44D6B765B2E4717E9B2 /* Pods-OnTime.debug.xcconfig */,
 				EB2B65B9405C74E91BE9A96E /* Pods-OnTime.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -80,6 +81,7 @@
 			children = (
 				6338C2CF285F358F0087C1F4 /* OnTimeApp.swift */,
 				6338C2D1285F358F0087C1F4 /* ContentView.swift */,
+				6336EA7F2862236A00BF5F6F /* Flags.swift */,
 				6338C2D3285F35950087C1F4 /* Assets.xcassets */,
 				6338C2D5285F35950087C1F4 /* Preview Content */,
 				6338C2DD285F35D40087C1F4 /* Person.swift */,
@@ -194,6 +196,7 @@
 				6338C2DE285F35D40087C1F4 /* Person.swift in Sources */,
 				6338C2D2285F358F0087C1F4 /* ContentView.swift in Sources */,
 				6338C2D0285F358F0087C1F4 /* OnTimeApp.swift in Sources */,
+				6336EA802862236A00BF5F6F /* Flags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

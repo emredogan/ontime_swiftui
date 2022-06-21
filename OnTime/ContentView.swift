@@ -10,12 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var stateManager = StateManager()
     @State var people = [Person]()
-    @State var activePerson: Person = Person(name: "None", averageDelayMinutes: 0)
+    @State var activePerson: Person = Person(name: "None", nationality: "TR", averageDelayMinutes: 0)
     @State var newPersonName = ""
     @State var newPersonDelay = ""
     @State private var selectedCountry: String = ""
 
-    
     
     
     var body: some View {
@@ -87,6 +86,20 @@ fileprivate func getLocales() -> [Country] {
     let engLocale = Locale(identifier: "en_US")
     let locales = Locale.isoRegionCodes
         .compactMap { Country(id: $0, name: engLocale.localizedString(forRegionCode: $0) ?? $0)}
+    return locales.sorted { c1, c2 in
+        c1.name < c2.name
+    }
+}
+
+private func convertNameToLocale(for fullCountryName : String) -> String {
+    var locales : String = ""
+    for localeCode in NSLocale.isoCountryCodes {
+        let identifier = NSLocale(localeIdentifier: localeCode)
+        let countryName = identifier.displayName(forKey: NSLocale.Key.countryCode, value: localeCode)
+        if fullCountryName.lowercased() == countryName?.lowercased() {
+            return localeCode as! String
+        }
+    }
     return locales
 }
 
@@ -128,7 +141,7 @@ struct AddPersonView: View {
         }
         
         Button("Add") {
-            let newPerson = Person(name: newPersonName, averageDelayMinutes: Int(activePerson.averageDelayMinutes-100))
+            let newPerson = Person(name: "\(newPersonName + Flags.flag(country: selectedCountry))", nationality: selectedCountry, averageDelayMinutes: Int(activePerson.averageDelayMinutes-100))
             people.append(newPerson)
             stateManager.changeAddPersonStatus(state: false)
             newPersonName = ""
