@@ -12,6 +12,7 @@
 		6338C2D4285F35950087C1F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6338C2D3285F35950087C1F4 /* Assets.xcassets */; };
 		6338C2D7285F35950087C1F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6338C2D6285F35950087C1F4 /* Preview Assets.xcassets */; };
 		6338C2DE285F35D40087C1F4 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6338C2DD285F35D40087C1F4 /* Person.swift */; };
+		A2DB25B206C19E7F2BAA57BE /* Pods_OnTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD7C387C6D3E4377E852AAC /* Pods_OnTime.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,9 @@
 		6338C2D3285F35950087C1F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6338C2D6285F35950087C1F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6338C2DD285F35D40087C1F4 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		7FD7C387C6D3E4377E852AAC /* Pods_OnTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C206A44D6B765B2E4717E9B2 /* Pods-OnTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTime.debug.xcconfig"; path = "Target Support Files/Pods-OnTime/Pods-OnTime.debug.xcconfig"; sourceTree = "<group>"; };
+		EB2B65B9405C74E91BE9A96E /* Pods-OnTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTime.release.xcconfig"; path = "Target Support Files/Pods-OnTime/Pods-OnTime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,17 +32,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2DB25B206C19E7F2BAA57BE /* Pods_OnTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05936E6596A2DA7E37BF0615 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C206A44D6B765B2E4717E9B2 /* Pods-OnTime.debug.xcconfig */,
+				EB2B65B9405C74E91BE9A96E /* Pods-OnTime.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		195E78E6EF4245B241095BF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FD7C387C6D3E4377E852AAC /* Pods_OnTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6338C2C3285F358F0087C1F4 = {
 			isa = PBXGroup;
 			children = (
 				6338C2CE285F358F0087C1F4 /* OnTime */,
 				6338C2CD285F358F0087C1F4 /* Products */,
+				05936E6596A2DA7E37BF0615 /* Pods */,
+				195E78E6EF4245B241095BF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +102,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6338C2DA285F35950087C1F4 /* Build configuration list for PBXNativeTarget "OnTime" */;
 			buildPhases = (
+				E7B7D352328DA118DA0C4103 /* [CP] Check Pods Manifest.lock */,
 				6338C2C8285F358F0087C1F4 /* Sources */,
 				6338C2C9285F358F0087C1F4 /* Frameworks */,
 				6338C2CA285F358F0087C1F4 /* Resources */,
@@ -134,6 +160,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E7B7D352328DA118DA0C4103 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnTime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6338C2C8285F358F0087C1F4 /* Sources */ = {
@@ -265,6 +316,7 @@
 		};
 		6338C2DB285F35950087C1F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C206A44D6B765B2E4717E9B2 /* Pods-OnTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,6 +346,7 @@
 		};
 		6338C2DC285F35950087C1F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB2B65B9405C74E91BE9A96E /* Pods-OnTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

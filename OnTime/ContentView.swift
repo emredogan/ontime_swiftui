@@ -10,9 +10,11 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var stateManager = StateManager()
     @State var people = [Person]()
-    @State var activePerson: Person = Person(name: "Emre", averageDelayMinutes: 100)
+    @State var activePerson: Person = Person(name: "None", averageDelayMinutes: 0)
     @State var newPersonName = ""
     @State var newPersonDelay = ""
+    @State private var selectedCountry: String = ""
+
     
     
     
@@ -28,7 +30,7 @@ struct ContentView: View {
                     }
                     
                     if stateManager.isShowingAddPerson {
-                        AddPersonView(people: $people, activePerson: $activePerson, newPersonName: $newPersonName, newPersonDelay: $newPersonDelay, stateManager: stateManager)
+                        AddPersonView(people: $people, activePerson: $activePerson, newPersonName: $newPersonName, newPersonDelay: $newPersonDelay, selectedCountry: $selectedCountry, stateManager: stateManager)
                     }
                     
                     Section {
@@ -72,11 +74,29 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+// Struct to store the country name and ID
+
+fileprivate struct Country {
+    var id: String
+    var name: String
+}
+
+// Function to put United States at the top of the list
+
+fileprivate func getLocales() -> [Country] {
+    let engLocale = Locale(identifier: "en_US")
+    let locales = Locale.isoRegionCodes
+        .compactMap { Country(id: $0, name: engLocale.localizedString(forRegionCode: $0) ?? $0)}
+    return locales
+}
+
 struct AddPersonView: View {
     @Binding var people: [Person]
     @Binding var activePerson: Person
     @Binding var newPersonName: String
     @Binding var newPersonDelay: String
+    @Binding var selectedCountry: String
+
     @ObservedObject var stateManager : StateManager
 
 
@@ -85,6 +105,12 @@ struct AddPersonView: View {
         Section(header: Text("Name")) {
             TextField("Enter person name", text: $newPersonName)
         }
+        
+        Picker("Nationality", selection: $selectedCountry) {
+                         ForEach(getLocales(), id: \.id) { country in
+                         Text(country.name).tag(country.id)
+                         }
+                     }
         Section(header: Text("Delayed or early")) {
             Picker("How much delayed / early?", selection: $activePerson.averageDelayMinutes) {
                 ForEach(-100..<101) {
